@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Contract Validation</title>
+  <link href="output.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+  <div class="min-h-screen flex flex-col items-center justify-center">
+    <header class="w-full bg-white py-4 shadow-lg">
+      <h1 class="text-3xl font-bold text-center text-blue-600">Business Contract Validation Tool</h1>
+    </header>
+    
+    <main class="flex-grow w-full max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg mt-10">
+      <h2 class="text-2xl font-semibold text-center mb-6">Upload Contract and Template File</h2>
+      
+      <form id="uploadForm" class="space-y-4" method="post">
+        <div class="flex flex-col sm:flex-row items-center">
+          <label for="contractFile" class="w-full sm:w-1/2 px-3 py-3 mx-3 bg-gray-200 rounded-lg cursor-pointer hover:bg-gray-300 transition duration-200 ease-in-out mb-4 sm:mb-0">
+            <span class="block truncate text-center" id="contractFileLabel">Choose Contract PDF</span>
+            <input id="contractFile" name="contractFile" type="file" accept="application/pdf" class="hidden" onchange="updateFileName('contractFile')">
+          </label>
+          <label for="templateFile" class="w-full sm:w-1/2 px-3 py-3 mx-3 bg-gray-200 rounded-lg cursor-pointer hover:bg-gray-300 transition duration-200 ease-in-out">
+            <span class="block truncate text-center" id="templateFileLabel">Choose Template PDF</span>
+            <input id="templateFile" name="templateFile" type="file" accept="application/pdf" class="hidden" onchange="updateFileName('templateFile')">
+          </label>
+        </div>
+        
+        <div class="text-center mt-6">
+          <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition duration-200 ease-in-out">Validate</button>
+        </div>
+      </form>
+      
+      <div id="output" class="mt-10 hidden">
+        <h3 class="text-xl font-semibold mb-4">Merged PDF:</h3>
+        <div class="flex items-center px-4 py-2 justify-between space-x-4">
+          <span id="mergedPdfName" class="font-semibold text-blue-600">this is test file name</span>
+          <div class="">
+            <button id="viewPdfButton" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" onclick="viewPdf()">View</button>
+            <button id="downloadPdfButton" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" onclick="downloadPdf()">Download</button>
+          </div>
+        </div>
+        <div id="summaryContainer" class="hidden">
+          <h3>Summary:</h3>
+          <p id="summaryText"></p>
+        </div>
+      </div>
+    </main>
+
+  </div>
+  
+  <script src="scripts/main.js"></script>
+</body>
+</html>
